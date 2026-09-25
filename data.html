@@ -1,0 +1,11 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MCDU Trainer · 导航资料格式</title><link rel="stylesheet" href="style.css"><body><header><a href="./">MCDU Trainer</a><nav><a href="privacy.html">隐私政策</a></nav></header><main><p class="eyebrow">LOCAL NAVIGATION IMPORT</p><h1>导入自备资料。</h1><p class="lead">在“更多 → 导入导航资料”中选择 JSON 文件。请仅导入你有权使用的资料；导入在本机进行。</p>
+<section><h2>格式与约束</h2><p>文件最大 25 MB。导入成功后替换当前扩展资料（跑道、导航台、程序及航路），因此文件应包含你希望保留的完整集合。机场仍使用内置的 21 个中国机场。导入失败时原资料保持不变。</p><p>顶层包含 <code>runways</code>、<code>fixes</code>、<code>procedures</code>、<code>airways</code> 四个数组。坐标为十进制度；南纬、西经用负数。导航台频率统一使用 kHz。程序 kind 为 SID、STAR 或 APPROACH；runway 可以为空（全部跑道）或匹配文件内的跑道。标识使用大写。</p><p>程序和航路仅为按顺序连接的航点序列；此格式不是 ARINC 424，不能表达所有条件航段、RF、程序转弯、速度高度限制和过渡。不要把完整专业数据库不加转换直接导入。</p><pre>{
+  "runways": [],
+  "fixes": [
+    {"ident":"USR01","name":"自定义练习点","kind":"USER",
+     "latitude":35.5,"longitude":117.2}
+  ],
+  "procedures": [],
+  "airways": []
+}</pre><p>上述仅演示自定义点格式；空数组会替换原相应资料。它不是实际航路、SID 或进近数据。</p></section>
+<section><h2>记录字段</h2><table><tr><th>对象</th><th>字段</th></tr><tr><td>runway</td><td>airport、ident、latitude、longitude；headingTrue（可选真航向）、lengthMeters（可选长度）</td></tr><tr><td>fix</td><td>ident、name、kind、latitude、longitude；frequencyKHz（可选）</td></tr><tr><td>procedure</td><td>airport、kind、runway、name、fixes（有序 fix 数组）</td></tr><tr><td>airway</td><td>name、fixes（至少两个有序 fix）</td></tr></table><p>当前不支持添加新的机场目录。建议保留原文件作为备份；需要返回内置资料时可重新安装 App，但这也会删除本地练习。</p></section></main><footer>© 2026 云启航科（成都）科技有限公司</footer></body></html>
