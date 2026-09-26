@@ -1,5 +1,5 @@
 <!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MCDU Trainer · 导航资料格式</title><link rel="stylesheet" href="style.css"><body><header><a href="./">MCDU Trainer</a><nav><a href="privacy.html">隐私政策</a></nav></header><main><p class="eyebrow">LOCAL NAVIGATION IMPORT</p><h1>导入自备资料。</h1><p class="lead">在“更多 → 导入导航资料”中选择 JSON 文件。请仅导入你有权使用的资料；导入在本机进行。</p>
-<section><h2>格式与约束</h2><p>文件最大 25 MB。导入成功后替换当前扩展资料（跑道、导航台、程序及航路），因此文件应包含你希望保留的完整集合。机场仍使用内置的 21 个中国机场。导入失败时原资料保持不变。</p><p>顶层包含 <code>runways</code>、<code>fixes</code>、<code>procedures</code>、<code>airways</code> 四个数组。坐标为十进制度；南纬、西经用负数。导航台频率统一使用 kHz。程序 kind 为 SID、STAR 或 APPROACH；runway 可以为空（全部跑道）或匹配文件内的跑道。标识使用大写。</p><p>程序和航路仅为按顺序连接的航点序列；此格式不是 ARINC 424，不能表达所有条件航段、RF、程序转弯、速度高度限制和过渡。不要把完整专业数据库不加转换直接导入。</p><pre>{
+<section><h2>格式与约束</h2><p>文件最大 25 MB。导入成功后替换当前扩展资料（跑道、导航台、程序及航路），因此文件应包含你希望保留的完整集合。机场仍使用内置的 37 个中国机场。导入失败时原资料保持不变。</p><p>顶层包含 <code>runways</code>、<code>fixes</code>、<code>procedures</code>、<code>airways</code> 四个数组。坐标为十进制度；南纬、西经用负数。导航台频率统一使用 kHz。程序 kind 为 SID、STAR 或 APPROACH；runway 可以为空（全部跑道）或匹配文件内的跑道。标识使用大写。</p><p>程序可用 fixes 航点序列或 legs 航段定义；可附加过渡、VIA 和受支持的限制。社区训练路线不具备完整 ARINC 424 信息，缺失的限制不会自动补全。不要把完整专业数据库不加转换直接导入。</p><pre>{
   "runways": [],
   "fixes": [
     {"ident":"USR01","name":"自定义练习点","kind":"USER",
